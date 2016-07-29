@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
+	{% load staticfiles %}	
 
-    <title>Title</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'web/css/style.css' %}" 
+	/>
+    <title>Finch - Learn like a bird</title>
 
   </head>
   <body>
 
-    <h1>Hello World!</h1>
+    <h1> Hello
+   		{{ name }}
+    </h1>
 
   </body>
 </html>

@@ -6,5 +6,5 @@ from .models import *
 
 def index(request):
     template = loader.get_template('web/index.html')
-    context = {}
+    context = {'name':'Agathe'}
     return HttpResponse(template.render(context, request))
