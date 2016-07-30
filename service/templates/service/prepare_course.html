@@ -1,15 +1,22 @@
 {% extends "service/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
 <strong>{{ course.title }}</strong>
 <h1>Welcome to {{ course.title }}!</h1>
 
-<p>To optimize the course for you, first we need to get to know you a little more.</p>
+    <div class="course-image"><img src="{% static 'service/images/qft.jpg' %}"></div>
+    <p>{{ course.description }}</p>
 
-<form action="{% url 'prepare_course' course.id %}" method="post">
-  {% csrf_token %}
-  {{ create_student_form }}
-  <input type="submit" value="Submit" class="btn btn-primary">
-</form>
+<div class="row">
+  <div class="col-sm-5 col-centered">
+    <p>To optimize the course for you, first we need to get to know you a little more.</p>
+    <form action="{% url 'prepare_course' course.id %}" method="post" class="create-student-form">
+      {% csrf_token %}
+      {{ create_student_form }}
+      <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+  </div>
+</div>
 
 {% endblock %}

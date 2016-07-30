@@ -8,6 +8,7 @@ class Course(models.Model):
     The course a teacher creates to teach a certain subject.
     """
     title = models.CharField(max_length=200)
+    description = MarkupField(markup_type='markdown', default="")
     # `variations` from foreign key
     # `tests` from foreign key
 

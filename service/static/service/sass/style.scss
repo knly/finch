@@ -103,6 +103,11 @@ h1, h2, h3, h4, h5 {
 
 // Components
 
+strong {
+  display: block;
+  margin-bottom: $spacer;
+}
+
 .course-list {
   margin-top: 2*$spacer;
   margin-bottom: $spacer;
@@ -120,6 +125,24 @@ h1, h2, h3, h4, h5 {
     a {
       width: 100%
     }
+  }
+}
+
+.col-centered {
+  margin: 0 auto;
+  float: none;
+}
+
+.course-image {
+  text-align: center;
+  img {
+    max-width: 30%;
+  }
+}
+
+.create-student-form {
+  label, input[type="submit"] {
+    margin-top: $spacer;
   }
 }
 

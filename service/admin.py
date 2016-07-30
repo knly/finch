@@ -13,7 +13,7 @@ class VariationInline(admin.TabularInline):
 
 
 class CourseAdmin(admin.ModelAdmin):
-    fields = ['title']
+    fields = ['title', 'description']
     inlines = [VariationInline]
 admin.site.register(Course, CourseAdmin)
 
