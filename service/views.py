@@ -1,6 +1,7 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.template import loader
 
 from .models import *
 from .engine import *
@@ -18,7 +19,6 @@ def prepare_course(request, course_id):
 
 def create_student(request, course_id):
     student = Student.objects.get_or_create(**request.POST['student'])
-    question = get_object_or_404(Question, pk=question_id)
     return HttpResponseRedirect(reverse('take_course', args=(course_id, student.id)))
 
 
@@ -27,7 +27,7 @@ def take_course(request, course_id, student_id):
     student = get_object_or_404(Student, pk=student_id)
     course = get_object_or_404(Course, pk=course_id)
     choice = chooseVariations(course=course, student=student)
-    return HttpResponse(template.render({ 'student': student, course: course, choice: choice }, request))
+    return HttpResponse(template.render({ 'student': student, 'course': course, 'choice': choice }, request))
 
 
 def edit_course(request, course_id):
