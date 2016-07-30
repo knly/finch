@@ -13,12 +13,28 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+
 class Variation(models.Model):
     """
     One variation of a course's content.
     """
     course = models.ForeignKey(Course)
+    description = models.CharField(max_length=200, default="")
+
+    def __str__(self):
+        return self.description
+
+
+class Lesson(models.Model):
+    """
+    A part of a course variation.
+    """
+    variation = models.ForeignKey(Variation)
+    index = models.IntegerField()
     content = MarkupField(markup_type='markdown')
+
+    def __str__(self):
+        return self.variation.course.title + ", lesson " + self.index
 
 
 class Test(models.Model):
@@ -27,6 +43,7 @@ class Test(models.Model):
     """
     course = models.ForeignKey(Course)
     content = MarkupField(markup_type='markdown')
+    # TODO add weight field if we have time.
 
 
 class Student(models.Model):
@@ -36,6 +53,7 @@ class Student(models.Model):
     name = models.CharField(max_length=200)
     birthday = models.DateField()
     gender = models.CharField(max_length=100, choices=[ ("male", "Male"), ("female", "Female") ])  # "m" or "f" (or do we need to be politically correct?)
+    originLanguageCode = models.CharField(max_length=5, default="en")
 
     def __str__(self):
         return self.name
