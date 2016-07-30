@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- 	    TinyMCE inline editing -->
-	    <script type="text/javascript" src="{% static 'service/bower_components/tinymce/js/tinymce/tinymce.min.js' %}"></script>
+	    <script type="text/javascript" src="{% static 'service/bower_components/tinymce/tinymce.min.js' %}"></script>
 	    <script type="text/javascript">
 	    tinymce.init({
 		selector: "h1.editme",
@@ -39,8 +39,8 @@
  <script src="{% static 'service/js/views/course-element.js' %}"></script>
  <script type="text/javascript">
 
- 	var testCourse = new app.CourseElement({variations:[{id:12,content:"Hello World",description:"One"}],course:{title:'newCourse'}});	
- 	$('#course-element').append(testCourse.render().$el);
+ 	// var testCourse = new app.CourseElement({variations:[{id:12,content:"Hello World",description:"One"}],course:{title:'newCourse'}});	
+ 	// $('#course-element').append(testCourse.render().$el);
 
  	var testCourse2 = new app.CourseElement({ variations:[{% for variation in variations %}{ id: {{variation.id}}, content: '{{variation.lesson.content}}' ,description: '{{variation.description}}'},{% endfor %}]});
  	$('#course-element').append(testCourse2.render().$el);

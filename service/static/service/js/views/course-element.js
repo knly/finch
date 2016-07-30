@@ -6,7 +6,7 @@ app.CourseElement = Backbone.View.extend({
 		template: _.template(`
 	<div class="container">
  
-    		<h3>Tabs -left</h3>      		
+    		<h3>Course Title</h3>      		
       		<div class="row variwrapper">
  				<div class="col-sm-3 varibrowsing">
 			        <ul class="nav nav-pills nav-stacked">
