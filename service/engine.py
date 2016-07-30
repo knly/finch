@@ -13,7 +13,7 @@ def chooseVariations(course, student):
         variation = random.choice(all_variations)
         return Choice.objects.create(variation=variation,student=student)
     for i, var in enumerate(all_variations):
-        student_list = Result.objects.filter(choice__variation=var).filter(choice__student__gender="
+        student_list = Result.objects.filter(choice__variation=var)
         N = len(list(student_list))
         for s in student_list:
             avg_score += s.score / N
