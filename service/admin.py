@@ -3,8 +3,8 @@ from .models import *
 # TODO edit template of admin page
 
 
-class TestInline(admin.TabularInline):
-    model = Test
+class MultipleChoiceTestInline(admin.TabularInline):
+    model = MultipleChoiceTest
     extra = 1
 
 
@@ -19,7 +19,7 @@ class VariationInline(admin.TabularInline):
 
 class CourseAdmin(admin.ModelAdmin):
     fields = ['title']
-    inlines = [VariationInline, TestInline]
+    inlines = [VariationInline, MultipleChoiceTestInline]
 admin.site.register(Course, CourseAdmin)
 
 
