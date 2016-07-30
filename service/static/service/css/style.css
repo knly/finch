@@ -271,7 +271,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 1rem;
   line-height: 1.5;
-  color: #373a3c;
+  color: black;
   background-color: #ECF0F1; }
 
 [tabindex="-1"]:focus {
@@ -2290,7 +2290,7 @@ input[type="button"].btn-block {
   padding: 5px 0;
   margin: 2px 0 0;
   font-size: 1rem;
-  color: #373a3c;
+  color: black;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -4774,15 +4774,16 @@ a.text-danger:focus, a.text-danger:hover {
   .hidden-print {
     display: none !important; } }
 
-h1 {
-  background-color: #ECF0F1; }
-
-.header {
-  background-color: #2C3E50; }
-  .header a {
+#site-header {
+  background-color: #2C3E50;
+  color: #ECF0F1;
+  padding-top: 1rem;
+  padding-bottom: 1rem; }
+  #site-header a {
     display: block;
-    text-align: center; }
-    .header a img {
+    text-align: center;
+    color: #ECF0F1; }
+    #site-header a img {
       width: 15%;
       margin: 0 auto;
       border-radius: 100%; }
@@ -4791,12 +4792,16 @@ h1 {
   font-family: finch;
   font-size: 3em; }
 
-.content {
-  background-color: #E74C3C;
-  color: #fff; }
+.slogan {
+  font-family: finch;
+  font-size: 1.5em; }
 
-.footer {
+#site-content {
+  background-color: #ECF0F1;
+  color: black; }
+
+#site-footer {
   background-color: #3498DB;
-  color: #fff; }
+  color: #ECF0F1; }
 
 /*# sourceMappingURL=style.css.map */

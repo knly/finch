@@ -10,6 +10,7 @@ $secondary: #E74C3C;
 $background: #ECF0F1;
 $backup1: #3498DB;
 $backup2: #2980B9;
+$text: black;
 
 //bootstrap overwrites
 $font-family-base: -apple-system, BlinkMacSystemFont,
@@ -17,6 +18,7 @@ $font-family-base: -apple-system, BlinkMacSystemFont,
   "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
 $body-bg: $background;
+$body-color: $text;
 
 //some other colors
 $bg-color: $background;
@@ -26,36 +28,42 @@ $white: #fff;
 
 @import '../bower_components/bootstrap/scss/bootstrap.scss';
 
-h1 {
-	background-color: $bg-color;
-}
-
-.header {
+#site-header {
 	background-color: $primary;
+  color: $background;
+  padding-top: $spacer;
+  padding-bottom: $spacer;
 
 	a {
 		display: block;
 		text-align: center;
+    color: $background;
 
-		img{
+		img {
 			width: 15%;
 			margin: 0 auto;
 			border-radius: 100%;
 		}
 	}
+
 }
 
-.finchfont{
+.finchfont {
 	font-family: finch;
 	font-size: 3em;
 }
 
-.content {
-	background-color: $secondary;
-	color: $white;
+.slogan {
+  font-family: finch;
+  font-size: 1.5em;
 }
 
-.footer {
+#site-content {
+	background-color: $background;
+	color: $text;
+}
+
+#site-footer {
 	background-color: $backup1;
-	color: $white;
+	color: $background;
 }

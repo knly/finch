@@ -8,53 +8,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-
 	<link rel="stylesheet" type="text/css" href="{% static 'service/css/style.css' %}"/>
 
-    <title>Finch - Learn like a bird</title>
+    <title>Finch - Natural selection for online education</title>
   </head>
   <body>
-  		<div class="header container">
-			<nav class="navbar navbar-light bg-faded">
+
+    <header id="site-header">
+  		<div class="container">
+        <a class="navbar-brand" href="#">
+          <span class="finchfont">Fi}nch</span>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Fringilla_coelebs_chaffinch_male_edit2.jpg">
+          <span class="slogan">Natural selection for online education</span>
+        </a>
+			<!-- <nav class="navbar">
 			  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
 			    &#9776;
 			  </button>
 			  <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-			    <a class="navbar-brand" href="#">
-			    	<span class="finchfont">Fi}nch</span>
-			    	<img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Fringilla_coelebs_chaffinch_male_edit2.jpg">
-			    	<span class="slogan">Slogan</span>
-			    </a>
 			    <ul class="nav navbar-nav">
 			      <li class="nav-item active">
-			        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">Features</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">Pricing</a>
-			      </li>
-			      <li class="nav-item">
-			        <a class="nav-link" href="#">About</a>
+			        <a class="nav-link" href="{% url 'index' %}">Courses</a>
 			      </li>
 			    </ul>
 			    <form class="form-inline pull-xs-right">
 				    <input class="form-control" type="text" placeholder="Search">
-    				<button class="btn btn-outline-success" type="submit">Search</button>
   				</form>
 			  </div>
-			</nav>
+			</nav> -->
     	</div>
+    </header>
 
-    	<div class="content container">
-    		{% block content %}
-			{% endblock %}
+    <section id="site-content">
+    	<div class="container">
+           {% block content %}
+			     {% endblock %}
     	</div>
+    </section>
 
-    	<div class="footer container">
-    		Footer
-    	</div>
+
+  <footer id="site-footer">
+    <div class="container">
+      Footer
+    </div>
+  </footer>
 
 
     <!-- JS DEPENDENCIES -->
