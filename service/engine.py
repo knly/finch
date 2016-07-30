@@ -9,24 +9,28 @@ def chooseVariations(course, student):
     NTot = len(Result.objects.all())
     for i, var in enumerate(all_variations):
         student_list = Result.objects.filter(choice__variation=var)
-        N = len(student_list)
+        N = len(list(student_list))
         for s in student_list:
-            scores.append(s.score / N) 
-    pval = .05
+            avg_score += s.score / N
+        scores.append(avg_score)
+        avg_score=0
+    pval = 1
 
     # determine weights
 
     winner = scores.index(max(scores))
     i=0
     probs=[]
-    Nvar = len(all_variations)
-    for var in all_variations:
+    Nvar = len(list(all_variations))
+    for i,var in enumerate(all_variations):
         if i==winner:
-            probs.append([var,1-pval+pval/Nvar])
+            probs.append([var,1-pval*(Nvar-1)/Nvar])
         else:
             probs.append([var,pval/Nvar])
+            
     # function that makes a weighted random selection
     # http://stackoverflow.com/questions/3679694/a-weighted-version-of-random-choice
+
     def weighted_choice(choices):
         total = sum(w for c, w in choices)
         r = random.uniform(0, total)
@@ -42,5 +46,6 @@ def chooseVariations(course, student):
     variation = weighted_choice(probs)
 
     print(variation.description)
+    print()
     
     return Choice.objects.create(variation=variation, student=student)
