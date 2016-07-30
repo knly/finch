@@ -4835,4 +4835,8 @@ h1, h2, h3, h4, h5 {
   .course-preview .preview-enroll a {
     width: 100%; }
 
+.white .active a,
+.white .active a:hover {
+  background-color: #fff; }
+
 /*# sourceMappingURL=style.css.map */

@@ -122,3 +122,8 @@ h1, h2, h3, h4, h5 {
     }
   }
 }
+
+.white .active a,
+.white .active a:hover {
+	background-color: $white;
+}
