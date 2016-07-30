@@ -1,6 +1,9 @@
 # Database
 *.sqlite3
 
+# Sass
+**/.sass-cache
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
