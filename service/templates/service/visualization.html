@@ -1,7 +1,7 @@
 {% extends "service/base.html" %}
 {% load staticfiles %}
 
-{% block head %}
+{% block scripts %}
 {% load chartit %}
 {{ chart|load_charts:"canvas" }}
 {% endblock %}
