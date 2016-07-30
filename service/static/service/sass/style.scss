@@ -52,26 +52,14 @@ p {
 
 	a {
 		display: block;
-		text-align: center;
-    color: $background;
+    text-align: center;
 
 		img {
-			width: 15%;
-			margin: 0 auto;
-			border-radius: 100%;
+      width: 60%;
+      margin: 0 auto;
 		}
 	}
 
-}
-
-.finchfont {
-	font-family: finch;
-	font-size: 3em;
-}
-
-.slogan {
-  font-family: finch;
-  font-size: 1.5em;
 }
 
 #site-content {
