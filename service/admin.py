@@ -28,3 +28,6 @@ class VariationAdmin(admin.ModelAdmin):
     inlines = [LessonInline]
     list_display = ('course', 'description')
 admin.site.register(Variation, VariationAdmin)
+
+
+admin.site.register(Student)

@@ -25,7 +25,7 @@ def prepare_course(request, course_id):
     if request.method == 'POST':
         create_student_form = CreateStudentForm(request.POST)
         if create_student_form.is_valid():
-            student = Student.objects.get_or_create(**create_student_form.cleaned_data)
+            student, _ = Student.objects.get_or_create(**create_student_form.cleaned_data)
             return HttpResponseRedirect(reverse('take_course', args=(course_id, student.id)))
 
     create_student_form = CreateStudentForm()
@@ -34,10 +34,15 @@ def prepare_course(request, course_id):
 
 def take_course(request, course_id, student_id):
     template = loader.get_template('service/take_course.html')
+
     student = get_object_or_404(Student, pk=student_id)
     course = get_object_or_404(Course, pk=course_id)
-    choice = chooseVariations(course=course, student=student)
-    return HttpResponse(template.render({ 'student': student, 'course': course, 'choice': choice }, request))
+    try:
+        choice = Choice.objects.filter(student=student, variation__course=course)[0]
+    except ImportError:
+        choice = chooseVariations(course=course, student=student)
+
+    return HttpResponse(template.render({ 'student': student, 'course': course, 'choice': choice, 'lessons': Lesson.objects.filter(variation=choice.variation) }, request))
 
 
 def edit_course(request, course_id):

@@ -1,5 +1,10 @@
-<ul>
-  <li>{{ student }}</li>
-  <li>{{ course }}</li>
-  <li>{{ choice }}</li>
-</ul>
+{% extends "service/base.html" %}
+
+{% block content %}
+<strong>{{ course.title }}</strong>
+
+{% for lesson in lessons %}
+<p>{{ lesson.content }}</p>
+{% endfor %}
+
+{% endblock %}
