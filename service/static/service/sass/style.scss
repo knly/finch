@@ -134,9 +134,27 @@ h1, h2, h3, h4, h5 {
 	padding-left:0!important;
 
 	.nav-link{
-		border-top-right-radius:0!important;
-		border-bottom-right-radius:0!important;
+		border-radius: 0!important;
 	}
+}
+
+$roundwidth: 25px;
+
+.varidelete{
+	float:right;
+	border: $background solid 1px;
+	border-radius: 50%;
+	height: $roundwidth;
+	width: $roundwidth;
+	text-align: center;
+	padding-bottom: $roundwidth;
+	transition: background-color,border-color,color 0.5s ease;
+}
+
+.varidelete:hover{
+	color: $primary;
+	background-color: $background;
+	border-color: $primary;
 }
 
 .varicontentholder{
@@ -150,4 +168,16 @@ h1, h2, h3, h4, h5 {
 
 .varicontent{
 	margin: 10px 15px;
+}
+
+.variadd{
+	text-align: center;
+	background-color: $secondary!important;
+	color: $white!important;
+	border-top-left-radius: 0!important;
+	transition: background-color 0.5s ease;
+}
+
+.variadd:hover{
+	background-color: adjust-color($secondary, $saturation: -10%)!important;
 }

@@ -4844,8 +4844,22 @@ h1, h2, h3, h4, h5 {
   padding-right: 0 !important;
   padding-left: 0 !important; }
   .varibrowsing .nav-link {
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important; }
+    border-radius: 0 !important; }
+
+.varidelete {
+  float: right;
+  border: #ECF0F1 solid 1px;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  padding-bottom: 25px;
+  transition: background-color,border-color,color 0.5s ease; }
+
+.varidelete:hover {
+  color: #2C3E50;
+  background-color: #ECF0F1;
+  border-color: #2C3E50; }
 
 .varicontentholder {
   padding-left: 0 !important;
@@ -4856,5 +4870,15 @@ h1, h2, h3, h4, h5 {
 
 .varicontent {
   margin: 10px 15px; }
+
+.variadd {
+  text-align: center;
+  background-color: #E74C3C !important;
+  color: #fff !important;
+  border-top-left-radius: 0 !important;
+  transition: background-color 0.5s ease; }
+
+.variadd:hover {
+  background-color: #dc5547 !important; }
 
 /*# sourceMappingURL=style.css.map */

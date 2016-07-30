@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div id="course-element">edit {{ course.title }}</div>
+<div id="course-element">edit {{ variations }}</div>
 
 {% endblock %}
 
@@ -11,7 +11,10 @@
 {% block scripts %}
  <script src="{% static 'service/js/views/course-element.js' %}"></script>
  <script type="text/javascript">
- 	var testCourse = new app.CourseElement({content:'Hallo Nils'});	
+
+ 	var testCourse = new app.CourseElement({variations:[{id:1,content:"Hello World",description:"One"}]});	
  	$('#course-element').append(testCourse.render().$el);
+
+
  </script>
 {% endblock %}

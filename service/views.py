@@ -53,11 +53,11 @@ def take_course(request, course_id, student_id):
 def edit_course(request, course_id):
     template = loader.get_template('service/edit_course.html')
     course = get_object_or_404(Course, pk=course_id)
-    variation_data = map(lambda variation: {
+    variation_data = list(map(lambda variation: {
         'id': variation.id,
         'description': variation.description,
         'content': Lesson.objects.filter(variation=variation)[0],
-    }, Variation.objects.filter(course=course))
+    }, Variation.objects.filter(course=course)))
     return HttpResponse(template.render({ 'course': course, 'variations': variation_data }, request))
 
 
