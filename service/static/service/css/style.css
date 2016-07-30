@@ -4788,7 +4788,8 @@ h1 {
       border-radius: 100%; }
 
 .finchfont {
-  font-family: finch; }
+  font-family: finch;
+  font-size: 3em; }
 
 .content {
   background-color: #E74C3C;

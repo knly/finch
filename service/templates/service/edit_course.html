@@ -1,5 +1,18 @@
 {% extends "service/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
 edit {{ course.title }}
+
+<div id="course-element"></div>
+
+{% endblock %}
+
+
+{% block scripts %}
+ <script src="{% static 'service/js/views/course-element.js' %}"></script>
+ <script type="text/javascript">
+ 	var testCourse = new app.CourseElement({content:'Hallo Nils'});	
+ 	$('#course-element').append(testCourse.render().$el);
+ </script>
 {% endblock %}

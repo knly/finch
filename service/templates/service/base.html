@@ -21,9 +21,9 @@
 			  </button>
 			  <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
 			    <a class="navbar-brand" href="#">
-			    	<span class="finchfont">Fi[nch</span>
+			    	<span class="finchfont">Fi}nch</span>
 			    	<img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Fringilla_coelebs_chaffinch_male_edit2.jpg">
-			    	Slogan
+			    	<span class="slogan">Slogan</span>
 			    </a>
 			    <ul class="nav navbar-nav">
 			      <li class="nav-item active">
@@ -63,6 +63,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
   <script src="{% static 'service/bower_components/underscore/underscore-min.js' %}"></script>
   <script src="{% static 'service/bower_components/backbone/backbone-min.js' %}"></script>
+
+	{% block scripts %}
+	{% endblock %}
 
   </body>
 </html>
