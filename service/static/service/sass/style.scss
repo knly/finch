@@ -38,6 +38,9 @@ h1, h2, h3, h4, h5 {
   color: $primary;
 }
 
+p {
+  text-align: justify;
+}
 
 // Structure
 
@@ -94,10 +97,18 @@ h1, h2, h3, h4, h5 {
 	color: $background;
   padding-top: 2*$spacer;
   padding-bottom: 2*$spacer;
+  text-align: center;
   font-size: 0.8rem;
   h1, h2, h3, h4, h5 {
     color: $background;
   }
+  a {
+    color: $background;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  margin-bottom: $spacer;
 }
 
 
@@ -135,6 +146,7 @@ strong {
 
 .course-image {
   text-align: center;
+  margin-top: 2*$spacer;
   img {
     max-width: 30%;
   }

@@ -4777,6 +4777,9 @@ a.text-danger:focus, a.text-danger:hover {
 h1, h2, h3, h4, h5 {
   color: #2C3E50; }
 
+p {
+  text-align: justify; }
+
 #site-header {
   background-color: #2C3E50;
   color: #ECF0F1;
@@ -4819,9 +4822,15 @@ h1, h2, h3, h4, h5 {
   color: #ECF0F1;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  text-align: center;
   font-size: 0.8rem; }
   #site-footer h1, #site-footer h2, #site-footer h3, #site-footer h4, #site-footer h5 {
     color: #ECF0F1; }
+  #site-footer a {
+    color: #ECF0F1; }
+
+h1, h2, h3, h4, h5 {
+  margin-bottom: 1rem; }
 
 strong {
   display: block;
@@ -4844,7 +4853,8 @@ strong {
   float: none; }
 
 .course-image {
-  text-align: center; }
+  text-align: center;
+  margin-top: 2rem; }
   .course-image img {
     max-width: 30%; }
 
