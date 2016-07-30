@@ -59,7 +59,7 @@ def PlotResults(predictor):
     possible_predictors=[]
     for r in Result.objects.all():
         for p in possible_predictors:
-            if r.choice.student.predictor /= p:
+            if r.choice.student.predictor != p:
                 p.append(ch.student.predictor)
     
     possible_predictors.sort()
