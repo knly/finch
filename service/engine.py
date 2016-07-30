@@ -32,7 +32,7 @@ def chooseVariations(course, student):
             probs.append([var,1-pval*(Nvar-1)/Nvar])
         else:
             probs.append([var,pval/Nvar])
-            
+
     # function that makes a weighted random selection
     # http://stackoverflow.com/questions/3679694/a-weighted-version-of-random-choice
 
@@ -45,24 +45,23 @@ def chooseVariations(course, student):
               return c
            upto += w
         assert False, "Shouldn't get here"
-    
+
     # choose one
-    
+
     variation = weighted_choice(probs)
-    
+
     return Choice.objects.create(variation=variation, student=student)
 
 def PlotResults(predictor,course_id):
 
-    crs = Course.objects.get(course_id)
+    crs = Course.objects.get(pk=course_id)
 
     all_variations = crs.variation_set.all()
 
-    data = DataPool(series=[{'options': {'source':Result.objects.filter(choice__variation=var).filter(choice__variation__course__id)},'terms': ['Avg(score)']}for var in all_variations]) 
-    
+    data = DataPool(series=[{'options': {'source':Result.objects.filter(choice__variation=var).filter(choice__variation__course=crs)},'terms': ['choice__student__'+predictor, 'score']}for var in all_variations])
+
     plot = Chart(datasource=data,series_options=[
         {'options': {'type':'line'},
-        'terms': {predictor: ['var'+str(i) for i in range(len(all_variations))]}}])
+        'terms': {'choice__student__'+predictor: ['score' for i in range(len(all_variations))]}}])
 
-    return plot         
-        
+    return plot

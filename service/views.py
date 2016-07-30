@@ -77,7 +77,7 @@ def edit_course(request, course_id):
     variation_data = list(map(lambda variation: {
         'id': variation.id,
         'description': variation.description,
-        'content': Lesson.objects.filter(variation=variation)[0],
+        'lesson': Lesson.objects.filter(variation=variation)[0],
     }, Variation.objects.filter(course=course)))
     return HttpResponse(template.render({ 'course': course, 'variations': variation_data }, request))
 
@@ -90,4 +90,7 @@ def save_course(request, course_id):
 
 def visualization(request, course_id):
     template = loader.get_template('service/visualization.html')
-    return HttpResponse(template.render({ 'chart': PlotResults('gender',course_id) }, request))
+
+    chart = PlotResults('gender',course_id)
+    return HttpResponse(template.render({ 'chart': chart }, request))
+
