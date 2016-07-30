@@ -1,10 +1,10 @@
 {% extends "service/base.html" %}
 {% load staticfiles %}
-
+{% load chartit %}
+    {{ chart|load_charts:"canvas" }}
 {% block content %}
 
 <h1>Visualization</h1>
-
-{{chart}}
-
+<div id='canvas'>
+</div>
 {% endblock %}

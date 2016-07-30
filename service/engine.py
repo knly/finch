@@ -54,15 +54,15 @@ def chooseVariations(course, student):
 
 def PlotResults(predictor,course_id):
 
-    crs = Course.objects.get(course_id)
+    crs = Course.objects.get(pk=course_id)
 
     all_variations = crs.variation_set.all()
 
-    data = DataPool(series=[{'options': {'source':Result.objects.filter(choice__variation=var).filter(choice__variation__course__id)},'terms': ['Avg(score)']}for var in all_variations]) 
+    data = DataPool(series=[{'options': {'source':Result.objects.filter(choice__variation=var).filter(choice__variation__course=crs)},'terms': ['choice__student__'+predictor, 'score']}for var in all_variations]) 
     
     plot = Chart(datasource=data,series_options=[
         {'options': {'type':'line'},
-        'terms': {predictor: ['var'+str(i) for i in range(len(all_variations))]}}])
+        'terms': {'choice__student__'+predictor: ['score' for i in range(len(all_variations))]}}])
 
     return plot         
         
