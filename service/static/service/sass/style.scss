@@ -123,7 +123,31 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-.white .active a,
-.white .active a:hover {
-	background-color: $white;
+.variwrapper{
+	margin: 0!important;
+	border: $primary solid 2px;
+	border-radius: $border-radius;
+}
+
+.varibrowsing{
+	padding-right:0!important;
+	padding-left:0!important;
+
+	.nav-link{
+		border-top-right-radius:0!important;
+		border-bottom-right-radius:0!important;
+	}
+}
+
+.varicontentholder{
+	padding-left:0!important;
+	min-height: 300px;
+	border-left: $primary solid 2px;
+	border-top-right-radius: $border-radius;
+	//border-bottom-left-radius: $border-radius;
+	border-bottom-right-radius: $border-radius;
+}
+
+.varicontent{
+	margin: 10px 15px;
 }

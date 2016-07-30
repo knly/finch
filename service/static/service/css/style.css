@@ -4835,8 +4835,26 @@ h1, h2, h3, h4, h5 {
   .course-preview .preview-enroll a {
     width: 100%; }
 
-.white .active a,
-.white .active a:hover {
-  background-color: #fff; }
+.variwrapper {
+  margin: 0 !important;
+  border: #2C3E50 solid 2px;
+  border-radius: 0.25rem; }
+
+.varibrowsing {
+  padding-right: 0 !important;
+  padding-left: 0 !important; }
+  .varibrowsing .nav-link {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important; }
+
+.varicontentholder {
+  padding-left: 0 !important;
+  min-height: 300px;
+  border-left: #2C3E50 solid 2px;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem; }
+
+.varicontent {
+  margin: 10px 15px; }
 
 /*# sourceMappingURL=style.css.map */
