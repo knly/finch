@@ -65,3 +65,7 @@ def save_course(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     print(request.POST['course'])
     return HttpResponseRedirect(reverse('edit_course', args=(course_id)))
+
+def visualization(request, course_id):
+    template = loader.get_template('service/visualization.html')
+    return HttpResponse(template.render({ 'chart': PlotResults('gender',course_id) }, request))

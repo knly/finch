@@ -52,27 +52,17 @@ def chooseVariations(course, student):
     
     return Choice.objects.create(variation=variation, student=student)
 
-def PlotResults(predictor):
+def PlotResults(predictor,course_id):
 
-    # Deduce list of possible predictors
+    crs = Course.objects.get(course_id)
 
-    possible_predictors=[]
-    for r in Result.objects.all():
-        for p in possible_predictors:
-            if r.choice.student.predictor != p:
-                p.append(ch.student.predictor)
-    
-    possible_predictors.sort()
+    all_variations = crs.variation_set.all()
 
-    # Produce data points for each predictor value
+    data = DataPool(series=[{'options': {'source':Result.objects.filter(choice__variation=var).filter(choice__variation__course__id)},'terms': ['Avg(score)']}for var in all_variations]) 
     
-    
-    
-    for p in possible_predictors:
-        for var in all_variations:
-            yval = 0
-            plist = Result.objects.filter(choice__variation=var).filter(choice__student__predictor=p)
-            for y in plist:
-                yval += y.score / len(plist)
-            
+    plot = Chart(datasource=data,series_options=[
+        {'options': {'type':'line'},
+        'terms': {predictor: ['var'+str(i) for i in range(len(all_variations))]}}])
+
+    return plot         
         
