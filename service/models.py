@@ -59,8 +59,12 @@ class MultipleChoiceQuestion(models.Model):
     test = models.ForeignKey(MultipleChoiceTest)
     question = models.CharField(max_length=400)
     num_of_answers = models.IntegerField()
-    answers = []
-    right_answer = models.IntegerField()
+    # MultipleChoiceAnswers : ForeignKey
+
+
+class MultipleChoiceAnswer(models.Model):
+    question = models.ForeignKey(MultipleChoiceQuestion)
+    isCorrect = models.BooleanField()
 
 
 class MotivationSharedCourseTest(models.Model):
