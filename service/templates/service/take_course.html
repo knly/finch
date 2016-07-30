@@ -10,13 +10,23 @@
 {{ lesson.content }}
 {% endfor %}
 
-<h2>Test</h2>
-{{ test.content }}
-<form action="{% url 'take_course' course.id student.id %}" method="post" required>
-{% csrf_token %}
-    Your answer: <input type="text" name="users_answer"><br>
-    <input type="submit" value="Submit" />
-</form>
+<hr style="margin-top: 2rem; margin-bottom: 2rem">
+
+<div class="row">
+  <div class="col-sm-5 col-centered">
+
+    {{ test.content }}
+
+    <form action="{% url 'take_course' course.id student.id %}" method="post" required class="test-form">
+    {% csrf_token %}
+        <label for="users_answer">Your answer:</label>
+        <input type="text" name="users_answer" id="users_answer" class="form-control">
+        <div style="text-align: center">
+        <input type="submit" class="btn btn-secondary" value="Complete Course!">
+      </div>
+    </form>
+  </div>
+</div>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 

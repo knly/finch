@@ -142,7 +142,7 @@ h1, h2, h3, h4, h5 {
   }
 }
 
-.create-student-form {
+.create-student-form, .test-form {
   label, input[type="submit"] {
     margin-top: $spacer;
   }
