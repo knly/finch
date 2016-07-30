@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+	{% load staticfiles %}
+
+	<link rel="stylesheet" type="text/css" href="{% static 'service/css/style.css' %}"
+	/>
+    <title>Finch - Learn like a bird</title>
+
+  </head>
+  <body>
+
+    <h1> Hello {{ students|join:", " }}!</h1>
+
+  </body>
+</html>
