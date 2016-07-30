@@ -82,7 +82,6 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
-
 class Choice(models.Model):
     """
     One specific choice of a course's variations, determined when a student enrolls in a course.
