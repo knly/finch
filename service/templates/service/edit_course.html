@@ -3,7 +3,34 @@
 
 {% block content %}
 
-<div id="course-element">edit {{ variations }}</div>
+<!-- 	    TinyMCE inline editing -->
+	    <script type="text/javascript" src="{% static 'service/bower_components/tinymce/js/tinymce/tinymce.min.js' %}"></script>
+	    <script type="text/javascript">
+	    tinymce.init({
+		selector: "h1.editme",
+		inline: true,
+		toolbar: "undo redo",
+		menubar: false
+	    });
+
+	    tinymce.init({
+		selector: "div.editme",
+		editor_deselector : "NoEditor",
+		inline: true,
+		force_br_newlines : false,
+		force_p_newlines : false,
+		forced_root_block : '',
+		plugins: [
+		    "advlist autolink lists link image charmap print preview anchor",
+		    "searchreplace visualblocks code fullscreen",
+		    "insertdatetime media table contextmenu paste"
+		],
+		toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+	    });
+	    </script>
+<!-- 		TinyMCE inline editing end -->
+
+<div id="course-element"></div>
 
 {% endblock %}
 
@@ -12,9 +39,10 @@
  <script src="{% static 'service/js/views/course-element.js' %}"></script>
  <script type="text/javascript">
 
- 	var testCourse = new app.CourseElement({variations:[{id:1,content:"Hello World",description:"One"}]});	
+ 	var testCourse = new app.CourseElement({variations:[{id:12,content:"Hello World",description:"One"}],course:{title:'newCourse'}});	
  	$('#course-element').append(testCourse.render().$el);
 
-
+ 	var testCourse2 = new app.CourseElement({ variations:[{% for variation in variations %}{ id: {{variation.id}}, content: '{{variation.lesson.content}}' ,description: '{{variation.description}}'},{% endfor %}]});
+ 	$('#course-element').append(testCourse2.render().$el);
  </script>
 {% endblock %}

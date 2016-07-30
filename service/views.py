@@ -56,7 +56,7 @@ def edit_course(request, course_id):
     variation_data = list(map(lambda variation: {
         'id': variation.id,
         'description': variation.description,
-        'content': Lesson.objects.filter(variation=variation)[0],
+        'lesson': Lesson.objects.filter(variation=variation)[0],
     }, Variation.objects.filter(course=course)))
     return HttpResponse(template.render({ 'course': course, 'variations': variation_data }, request))
 
