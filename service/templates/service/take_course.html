@@ -1,7 +1,10 @@
 {% extends "service/base.html" %}
 
 {% block content %}
-<strong>{{ course.title }}</strong>
+<div class="course-title">
+  <strong>{{ course.title }}</strong>
+  <div><strong>You're doing great, {{ student.name }}.</strong></div>
+</div>
 
 {% for lesson in lessons %}
 {{ lesson.content }}

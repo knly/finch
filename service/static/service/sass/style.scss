@@ -114,9 +114,11 @@ h1, h2, h3, h4, h5 {
 
 // Components
 
-strong {
-  display: block;
+.course-title {
   margin-bottom: $spacer;
+  div {
+    @include pull-right();
+  }
 }
 
 .course-list {

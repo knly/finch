@@ -4832,9 +4832,10 @@ p {
 h1, h2, h3, h4, h5 {
   margin-bottom: 1rem; }
 
-strong {
-  display: block;
+.course-title {
   margin-bottom: 1rem; }
+  .course-title div {
+    float: right !important; }
 
 .course-list {
   margin-top: 2rem;

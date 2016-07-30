@@ -2,12 +2,14 @@
 {% load staticfiles %}
 
 {% block content %}
-<strong>{{ course.title }}</strong>
+<div class="course-title">
+  <strong>{{ course.title }}</strong>
+</div>
 <h1>Welcome to {{ course.title }}!</h1>
 
     <div class="course-image"><img src="{% static 'service/images/qft.jpg' %}"></div>
     <p>{{ course.description }}</p>
-    <hr>
+    <hr style="margin-top: 2rem; margin-bottom: 2rem">
 
 <div class="row">
   <div class="col-sm-5 col-centered">
