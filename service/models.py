@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from markupfield.fields import MarkupField
 
@@ -37,13 +38,42 @@ class Lesson(models.Model):
         return self.variation.course.title + ", lesson " + self.index
 
 
-class Test(models.Model):
+class MultipleChoiceTest(models.Model):
     """
-    A test to determine the student's success in learning the subject
+    Multiple choice test.
+    """
+    # MultipleChoiceQuestion : ForeignKey
+    course = models.ForeignKey(Course)
+
+    def __str__(self):
+        return "test for course: " + self.course.title
+
+
+class MultipleChoiceQuestion(models.Model):
+    """
+    Multiple choice question.
+    """
+    test = models.ForeignKey(MultipleChoiceTest)
+    question = models.CharField(max_length=400)
+    num_of_answers = models.IntegerField()
+    answers = []
+    right_answer = models.IntegerField()
+
+
+class MotivationSharedCourseTest(models.Model):
+    """
+    A binary test checking whether the user hit the link to
+    share this course with friends.
     """
     course = models.ForeignKey(Course)
-    content = MarkupField(markup_type='markdown')
-    # TODO add weight field if we have time.
+
+
+class MotivationFinishedCourseTest(models.Model):
+    """
+    A binary test checking whether the user hit the link to
+    share this course with friends.
+    """
+    course = models.ForeignKey(Course)
 
 
 class Student(models.Model):
@@ -73,6 +103,6 @@ class Result(models.Model):
     The result of a test.
     Always relates to a specific choice of variations of the course material.
     """
-    test = models.ForeignKey(Test)
+    multipleChoiceTest = models.ForeignKey(MultipleChoiceTest)
     choice = models.ForeignKey(Choice)
     score = models.FloatField()
