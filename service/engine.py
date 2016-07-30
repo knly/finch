@@ -8,8 +8,6 @@ def chooseVariations(course, student):
     # Perform Fisher test
 
     # determine weights
-
-    
     
     # function that makes a weighted random selection
     # http://stackoverflow.com/questions/3679694/a-weighted-version-of-random-choice
@@ -25,6 +23,6 @@ def chooseVariations(course, student):
     
     # choose one
     
-    
+    variation = all_variations[0]
     
     return Choice.objects.create(variation=variation, student=student)
