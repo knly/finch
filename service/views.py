@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.template import loader
 from django import forms
 import datetime
@@ -41,13 +41,34 @@ def take_course(request, course_id, student_id):
         choice = Choice.objects.get(student=student, variation__course=course)
     except Choice.DoesNotExist:
         choice = chooseVariations(course=course, student=student)
+    if request.method == 'POST':
+        result = Result.objects.create(test=course.test, choice=choice,
+                                       score=calculate_score(
+                                           course, request.POST["users_answer"]))
+        return HttpResponseRedirect(reverse('visualization', args=(course_id,)))
 
     try:
         test = Test.objects.get(course=course)
     except Test.DoesNotExist:
         test = None
 
-    return HttpResponse(template.render({ 'student': student, 'course': course, 'choice': choice, 'lessons': Lesson.objects.filter(variation=choice.variation), 'test': test }, request))
+    return HttpResponse(template.render(
+        { 'student': student,
+          'course': course,
+          'choice': choice,
+          'lessons': Lesson.objects.filter(variation=choice.variation),
+          'test': test }, request))
+
+
+def calculate_score(course, users_answer):
+    score = 0
+    correct_answer = course.test.correct_answer
+    print(len(correct_answer))
+    for i in range(0, len(correct_answer)):
+        if (i < len(users_answer) and users_answer[i] == correct_answer[i]):
+            score += 1 / len(correct_answer)
+    return score
+
 
 
 def edit_course(request, course_id):
@@ -64,7 +85,8 @@ def edit_course(request, course_id):
 def save_course(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
     print(request.POST['course'])
-    return HttpResponseRedirect(reverse('edit_course', args=(course_id)))
+    return HttpResponseRedirect(reverse('edit_course', args=(course_id,)))
+
 
 def visualization(request, course_id):
     template = loader.get_template('service/visualization.html')

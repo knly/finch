@@ -8,9 +8,13 @@
 {% endfor %}
 
 <h2>Test</h2>
-
 {{ test.content }}
+<form action="{% url 'take_course' course.id student.id %}" method="post" required>
+{% csrf_token %}
+    Your answer: <input type="text" name="users_answer"><br>
+    <input type="submit" value="Submit" />
+</form>
 
-<p>(correct answer: {{ test.correct_answer }})</p>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% endblock %}

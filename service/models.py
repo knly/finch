@@ -45,7 +45,6 @@ class Test(models.Model):
     """
     Multiple choice test.
     """
-    # MultipleChoiceQuestion : ForeignKey
     course = models.OneToOneField(Course)
     content = MarkupField(markup_type='markdown')
     correct_answer = models.CharField(max_length=200)
