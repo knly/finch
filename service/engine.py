@@ -1,11 +1,12 @@
 from .models import *
-from .Fisher import *
 
 
 def chooseVariations(course, student):
     all_variations = course.variation_set.all()
 
     # Perform Fisher test
+
+
 
     # determine weights
     
