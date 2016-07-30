@@ -2,6 +2,8 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.template import loader
+from django import forms
+import datetime
 
 from .models import *
 from .engine import *
@@ -11,15 +13,23 @@ def index(request):
     return HttpResponse(template.render({ 'courses': Course.objects.all() }, request))
 
 
+class CreateStudentForm(forms.Form):
+    name = forms.CharField(label="Name", max_length=100, widget=forms.TextInput(attrs={ 'class': 'form-control' }))
+    birthday = forms.DateField(label="Birthday", widget=forms.SelectDateWidget(attrs={ 'class': 'form-control' }))
+    gender = forms.ChoiceField(choices=( ("female", "Female"), ("male", "Male"), ("other", "Other") ), widget=forms.Select(attrs={ 'class': 'form-control' }))
+    originLanguageCode = forms.CharField(label="Mother tongue", max_length=10, widget=forms.TextInput(attrs={ 'class': 'form-control' }))
+
 def prepare_course(request, course_id):
     template = loader.get_template('service/prepare_course.html')
     course = get_object_or_404(Course, pk=course_id)
-    return HttpResponse(template.render({ 'course': course }, request))
+    if request.method == 'POST':
+        create_student_form = CreateStudentForm(request.POST)
+        if create_student_form.is_valid():
+            student = Student.objects.get_or_create(**create_student_form.cleaned_data)
+            return HttpResponseRedirect(reverse('take_course', args=(course_id, student.id)))
 
-
-def create_student(request, course_id):
-    student = Student.objects.get_or_create(**request.POST['student'])
-    return HttpResponseRedirect(reverse('take_course', args=(course_id, student.id)))
+    create_student_form = CreateStudentForm()
+    return HttpResponse(template.render({ 'course': course, 'create_student_form': create_student_form }, request))
 
 
 def take_course(request, course_id, student_id):
