@@ -1,6 +1,7 @@
 from service.models import *
 from service.engine import *
 import datetime
+import random
 
 c = Course.objects.create(title="asdf")
 v1 = Variation.objects.create(course=c,description="1")
@@ -12,12 +13,12 @@ for i in range(10):
 for i in range(10):
     Choice.objects.create(variation=v2,student=s)
 for ch in Choice.objects.filter(variation=v1):
-    Result.objects.create(test=t,choice=ch,score=10)
+    Result.objects.create(test=t,choice=ch,score=10+10*random.random())
 for ch in Choice.objects.filter(variation=v2):
-    Result.objects.create(test=t,choice=ch,score=20)
+    Result.objects.create(test=t,choice=ch,score=15+10*random.random())
 p1 = 0
 p2 = 0
-for i in range(50):
+for i in range(100):
     tmp = chooseVariations(c,s)
     if tmp.variation == v1:
         p1+=1

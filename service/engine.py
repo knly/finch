@@ -1,5 +1,6 @@
 from .models import *
 import random
+import scipy.stats
 
 def chooseVariations(course, student):
     all_variations = course.variation_set.all()
@@ -14,7 +15,7 @@ def chooseVariations(course, student):
             avg_score += s.score / N
         scores.append(avg_score)
         avg_score=0
-    pval = 1
+    pval = scipy.stats.chisquare(scores)[1]
 
     # determine weights
 
