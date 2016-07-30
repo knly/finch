@@ -38,8 +38,8 @@ def take_course(request, course_id, student_id):
     student = get_object_or_404(Student, pk=student_id)
     course = get_object_or_404(Course, pk=course_id)
     try:
-        choice = Choice.objects.filter(student=student, variation__course=course)[0]
-    except ImportError:
+        choice = Choice.objects.get(student=student, variation__course=course)
+    except Choice.DoesNotExist:
         choice = chooseVariations(course=course, student=student)
 
     return HttpResponse(template.render({ 'student': student, 'course': course, 'choice': choice, 'lessons': Lesson.objects.filter(variation=choice.variation) }, request))
