@@ -1,9 +1,23 @@
 {% extends "service/base.html" %}
+{% load staticfiles %}
 
 {% block content %}
-Hello, welcome, blablabla
 
-List of all courses
+<h1>Available Courses</h1>
+<div class="course-list">
 
-edit {{ courses }}
+{% for course in courses %}
+<section class="row course-preview">
+  <div class="col-sm-3 preview-image"><img src="{% static 'service/images/qft.jpg' %}"></div>
+  <div class="col-sm-7 preview-content">
+    <h3>{{ course.title }}</h3>
+    <p>{{ course.description }}</p>
+  </div>
+  <div class="col-sm-2 preview-enroll">
+    <a class="btn btn-secondary course-enroll" href="{% url 'prepare_course' course.id %}">Enroll</a>
+  </div>
+</section>
+{% endfor %}
+
+</div>
 {% endblock %}
