@@ -4,9 +4,7 @@ app.CourseElement = Backbone.View.extend({
 		className: '',
 
 		template: _.template(`
-	<div class="container">
- 
-    		<h3>Course Title</h3>      		
+	<div class="container">  		
       		<div class="row variwrapper">
  				<div class="col-sm-3 varibrowsing">
 			        <ul class="nav nav-pills nav-stacked">
@@ -25,6 +23,7 @@ app.CourseElement = Backbone.View.extend({
 			   	</div>
 		    </div>
     </div>
+    <div>&nbsp;</div><hr>
       
     </div></div>`),
 

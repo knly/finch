@@ -160,10 +160,18 @@ h1, h2, h3, h4, h5 {
   }
 }
 
+$roundwidth: 25px;
+$bordercolor: #bbb;
+$borderwidth: 1px;
+
 .variwrapper{
 	margin: 0!important;
-	border: $primary solid 2px;
+	border: $bordercolor solid $borderwidth;
 	border-radius: $border-radius;
+}
+
+.variwrapper:active{
+	border-color: $primary;
 }
 
 .varibrowsing{
@@ -174,8 +182,6 @@ h1, h2, h3, h4, h5 {
 		border-radius: 0!important;
 	}
 }
-
-$roundwidth: 25px;
 
 .varidelete{
 	float:right;
@@ -197,7 +203,7 @@ $roundwidth: 25px;
 .varicontentholder{
 	padding-left:0!important;
 	min-height: 300px;
-	border-left: $primary solid 2px;
+	border-left: $bordercolor solid $borderwidth;
 	border-top-right-radius: $border-radius;
 	//border-bottom-left-radius: $border-radius;
 	border-bottom-right-radius: $border-radius;
@@ -217,4 +223,9 @@ $roundwidth: 25px;
 
 .variadd:hover{
 	background-color: adjust-color($secondary, $saturation: -10%)!important;
+}
+
+.coursetitle{
+	display: inline-block;
+	width: auto!important;
 }
