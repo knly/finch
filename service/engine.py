@@ -1,6 +1,7 @@
 from .models import *
 import random
 import scipy.stats
+from chartit import DataPool,Chart
 
 def chooseVariations(course, student):
     all_variations = course.variation_set.all()
@@ -8,8 +9,11 @@ def chooseVariations(course, student):
     scores=[]
     avg_score=0
     NTot = len(Result.objects.all())
+    if NTot == 0:
+        variation = random.choice(all_variations)
+        return Choice.objects.create(variation=variation,student=student)
     for i, var in enumerate(all_variations):
-        student_list = Result.objects.filter(choice__variation=var)
+        student_list = Result.objects.filter(choice__variation=var).filter(choice__student__gender="
         N = len(list(student_list))
         for s in student_list:
             avg_score += s.score / N
@@ -45,8 +49,30 @@ def chooseVariations(course, student):
     # choose one
     
     variation = weighted_choice(probs)
-
-    print(variation.description)
-    print()
     
     return Choice.objects.create(variation=variation, student=student)
+
+def PlotResults(predictor):
+
+    # Deduce list of possible predictors
+
+    possible_predictors=[]
+    for r in Result.objects.all():
+        for p in possible_predictors:
+            if r.choice.student.predictor /= p:
+                p.append(ch.student.predictor)
+    
+    possible_predictors.sort()
+
+    # Produce data points for each predictor value
+    
+    
+    
+    for p in possible_predictors:
+        for var in all_variations:
+            yval = 0
+            plist = Result.objects.filter(choice__variation=var).filter(choice__student__predictor=p)
+            for y in plist:
+                yval += y.score / len(plist)
+            
+        

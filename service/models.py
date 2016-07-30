@@ -34,8 +34,11 @@ class Lesson(models.Model):
     index = models.IntegerField()
     content = MarkupField(markup_type='markdown')
 
+    class Meta:
+        ordering = [ 'index' ]
+
     def __str__(self):
-        return self.variation.course.title + ", lesson " + self.index
+        return self.variation.course.title + ", lesson " + str(self.index)
 
 
 class MultipleChoiceTest(models.Model):

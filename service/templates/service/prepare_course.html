@@ -1,5 +1,15 @@
 {% extends "service/base.html" %}
 
 {% block content %}
-<h1>Welcome to {{ course.title }}</h1>
+<strong>{{ course.title }}</strong>
+<h1>Welcome to {{ course.title }}!</h1>
+
+<p>To optimize the course for you, first we need to get to know you a little more.</p>
+
+<form action="{% url 'prepare_course' course.id %}" method="post">
+  {% csrf_token %}
+  {{ create_student_form }}
+  <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+
 {% endblock %}
