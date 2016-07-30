@@ -4903,6 +4903,7 @@ h1, h2, h3, h4, h5 {
 
 .coursetitle {
   display: inline-block;
-  width: auto !important; }
+  width: auto !important;
+  margin-left: 23px; }
 
 /*# sourceMappingURL=style.css.map */

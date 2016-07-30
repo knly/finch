@@ -29,12 +29,14 @@
 	    </script>
 <!-- 		TinyMCE inline editing end -->
 
-<div id="course-element">
-	<h2><div>Course Title: <input type="text" class="form-control coursetitle" value="{{ course.title }}"></div></h2> 
-	<h4>Lesson 1:</h4>
-</div>
-<div id="course-element2">
-	<h4>Lesson 2:</h4>
+<div id="pushme">
+		<div id="course-element">
+			<h2><div>Course Title: <input type="text" class="form-control coursetitle" value="{{ course.title }}"></div></h2> 
+			<h4>Lesson 1:</h4>
+		</div>
+		<div id="course-element2">
+			<h4>Lesson 2:</h4>
+		</div>
 </div>
 
 {% endblock %}
@@ -50,4 +52,8 @@
  	var testCourse = new app.CourseElement({variations:[{id:12,content:"Hello World",description:"One"}],course:{title:'newCourse'}});	
  	$('#course-element2').append(testCourse.render().$el);
  </script>
+ <script src="{% static 'service/bower_components/dragula.js/dragula.js' %}"></script>
+ <link rel="stylesheet" type="text/css" href="{% static 'service/bower_components/dragula.js/dragula.js' %}"/>
+ <script type="text/javascript">dragula([document.getElementById(pushme)]);</script>
+
 {% endblock %}
