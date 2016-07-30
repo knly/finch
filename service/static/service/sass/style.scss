@@ -1,9 +1,53 @@
-$bg-color: #333;
+@font-face {
+    font-family: finch;
+    src: url(./fonts/blacksword/blacksword.otf);
+}
+
+// ------------- Colors -------------
+//Flat UI
+$primary: #2C3E50;
+$secondary: #E74C3C;
+$background: #ECF0F1;
+$backup1: #3498DB;
+$backup2: #2980B9;
+
+//bootstrap overwrites
+$body-bg: $background;
+
+//some other colors
+$bg-color: $background;
+$black: #000;
+$white: #fff;
+// ------------- End Colors -------------
+
+@import '../bower_components/bootstrap/scss/bootstrap.scss';
 
 h1 {
 	background-color: $bg-color;
 }
 
 .header {
-	background-color: $bg-color;
+	background-color: $primary;
+
+	a {
+		display: block;
+		text-align: center;
+		font-family: finch;
+
+		img{
+			width: 15%;
+			margin: 0 auto;
+			border-radius: 100%;
+		}
+	}
+}
+
+.content {
+	background-color: $secondary;
+	color: $white;
+}
+
+.footer {
+	background-color: $backup1;
+	color: $white;
 }
