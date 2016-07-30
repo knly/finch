@@ -4,7 +4,13 @@
 <strong>{{ course.title }}</strong>
 
 {% for lesson in lessons %}
-<p>{{ lesson.content }}</p>
+{{ lesson.content }}
 {% endfor %}
+
+<h2>Test</h2>
+
+{{ test.content }}
+
+<p>(correct answer: {{ test.correct_answer }})</p>
 
 {% endblock %}

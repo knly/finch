@@ -42,7 +42,12 @@ def take_course(request, course_id, student_id):
     except Choice.DoesNotExist:
         choice = chooseVariations(course=course, student=student)
 
-    return HttpResponse(template.render({ 'student': student, 'course': course, 'choice': choice, 'lessons': Lesson.objects.filter(variation=choice.variation) }, request))
+    try:
+        test = Test.objects.get(course=course)
+    except Test.DoesNotExist:
+        test = None
+
+    return HttpResponse(template.render({ 'student': student, 'course': course, 'choice': choice, 'lessons': Lesson.objects.filter(variation=choice.variation), 'test': test }, request))
 
 
 def edit_course(request, course_id):

@@ -41,30 +41,17 @@ class Lesson(models.Model):
         return self.variation.course.title + ", lesson " + str(self.index)
 
 
-class MultipleChoiceTest(models.Model):
+class Test(models.Model):
     """
     Multiple choice test.
     """
     # MultipleChoiceQuestion : ForeignKey
-    course = models.ForeignKey(Course)
+    course = models.OneToOneField(Course)
+    content = MarkupField(markup_type='markdown')
+    correct_answer = models.CharField(max_length=200)
 
     def __str__(self):
         return "test for course: " + self.course.title
-
-
-class MultipleChoiceQuestion(models.Model):
-    """
-    Multiple choice question.
-    """
-    test = models.ForeignKey(MultipleChoiceTest)
-    question = models.CharField(max_length=400)
-    num_of_answers = models.IntegerField()
-    # MultipleChoiceAnswers : ForeignKey
-
-
-class MultipleChoiceAnswer(models.Model):
-    question = models.ForeignKey(MultipleChoiceQuestion)
-    isCorrect = models.BooleanField()
 
 
 class MotivationSharedCourseTest(models.Model):
@@ -110,6 +97,6 @@ class Result(models.Model):
     The result of a test.
     Always relates to a specific choice of variations of the course material.
     """
-    multipleChoiceTest = models.ForeignKey(MultipleChoiceTest)
+    test = models.ForeignKey(Test)
     choice = models.ForeignKey(Choice)
     score = models.FloatField()
