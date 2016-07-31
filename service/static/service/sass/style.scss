@@ -67,6 +67,11 @@ p {
 	color: $text;
   padding-top: 2*$spacer;
   padding-bottom: 2*$spacer;
+  img {
+    margin: 0 auto;
+    display: block;
+    max-width: 50%;
+  }
 }
 
 #site-vision {
@@ -75,7 +80,7 @@ p {
   padding-top: 2*$spacer;
   padding-bottom: 2*$spacer;
   font-size: 0.8rem;
-  h1, h2, h3, h4, h5 {
+  h1, h2, h3, h4, h5, a {
     color: $background;
   }
 }
@@ -222,12 +227,11 @@ $borderwidth: 1px;
 }
 
 .coursetitlepre{
-	text-decoration: underline;
 }
 
 .coursetitle{
 	display: inline-block;
-	width: auto!important;
+  width: 43rem;
 	margin-left:23px;
 	font-size:1em;
 }

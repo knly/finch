@@ -4797,6 +4797,10 @@ p {
   color: black;
   padding-top: 2rem;
   padding-bottom: 2rem; }
+  #site-content img {
+    margin: 0 auto;
+    display: block;
+    max-width: 50%; }
 
 #site-vision {
   background-color: #E74C3C;
@@ -4804,7 +4808,7 @@ p {
   padding-top: 2rem;
   padding-bottom: 2rem;
   font-size: 0.8rem; }
-  #site-vision h1, #site-vision h2, #site-vision h3, #site-vision h4, #site-vision h5 {
+  #site-vision h1, #site-vision h2, #site-vision h3, #site-vision h4, #site-vision h5, #site-vision a {
     color: #ECF0F1; }
 
 #site-footer {
@@ -4908,12 +4912,9 @@ h1, h2, h3, h4, h5 {
 .variadd:hover {
   background-color: #dc5547 !important; }
 
-.coursetitlepre {
-  text-decoration: underline; }
-
 .coursetitle {
   display: inline-block;
-  width: auto !important;
+  width: 43rem;
   margin-left: 23px;
   font-size: 1em; }
 

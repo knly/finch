@@ -31,18 +31,15 @@
 
 <div id="pushme">
 		<div id="course-element">
-			<h2><div><span class="coursetitlepre">Course Title:</span><input type="text" class="form-control coursetitle" value="{{ course.title }}"></div></h2> 
+			<h2><div><span class="coursetitlepre">Course Title:</span><input type="text" class="form-control coursetitle" value="{{ course.title }}"></div></h2>
 			<div>&nbsp;</div><hr><div>&nbsp;</div>
 			<h4>Lesson 1:</h4>
-		</div>
-		<div id="course-element2">
-			<h4>Lesson 2:</h4>
 		</div>
 		<div class="courseeditsubmit">
 			<button type="button" class="btn btn-secondary submitbutton" onclick="addLesson();">Add a lesson</button>
 		</div>
 		<div>
-			<h2>Input the test question please:</h2>
+			<h2>Test</h2>
 			<textarea type="text" class="form-control" rows="8">Enter the question text.</textarea>
 		</div>
 		<div class="courseeditsubmit">
@@ -58,14 +55,11 @@
  <script src="{% static 'service/js/views/course-element.js' %}"></script>
  <script type="text/javascript">
 
- 	var testCourse2 = new app.CourseElement({ variations:[{% for variation in variations %}{ id: {{variation.id}}, content: '{{variation.lesson.content}}' ,description: '{{variation.description}}'},{% endfor %}]});
+ 	var testCourse2 = new app.CourseElement({ variations:[{% for variation in variations %}{ id: {{variation.id}}, content: `{{variation.lesson.content}}` ,description: `{{variation.description}}`},{% endfor %}]});
  	$('#course-element').append(testCourse2.render().$el);
 
- 	var testCourse = new app.CourseElement({variations:[{id:28,content:"Hello World",description:"One"}]});	
- 	$('#course-element2').append(testCourse.render().$el);
-
  	function addLesson(){
- 		var testCourse3 = new app.CourseElement({variations:[{id:38,content:"You created a new lesson",description:"Variation 1"}]});	
+ 		var testCourse3 = new app.CourseElement({variations:[{id:38,content:"You created a new lesson",description:"Variation 1"}]});
  		$('#course-element2').append("<h4>Lesson 3:</h4>");
  		$('#course-element2').append(testCourse3.render().$el);
 

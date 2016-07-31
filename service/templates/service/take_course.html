@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-sm-5 col-centered">
-    <div><strong>Test yourself!</strong></div>
+    <div class="course-title"><strong>Test yourself!</strong></div>
     {{ test.content }}
 
     <form action="{% url 'take_course' course.id student.id %}" method="post" required class="test-form">
