@@ -25,8 +25,6 @@ def chooseVariations(course, student):
         pval = 0.5
     else:
         pval = scipy.stats.chisquare(scores)[1]
-        print("CHI_SQ::::::::::::::::::::::::::::::::::::::::")
-        print(pval)
 
     # determine weights
 
@@ -90,13 +88,11 @@ def PlotResults(predictor,course_id):
         for p in possible_strpred:
             average = 0
             varlist = Result.objects.filter(choice__variation=var)
-            print(varlist)
             N=0 # TODO raises bug when not all choices and predictors were tried
             for r in varlist:
                 if getattr(r.choice.student,predictor) == p:
                     if r.finished_course:
                         average += r.score
-                        print(r.score)
                         N+=1
             if N != 0:
                 average /= N
