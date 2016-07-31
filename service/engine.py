@@ -10,7 +10,8 @@ def chooseVariations(course, student):
     scores=[]
     avg_score=0
     find_unfinished_results(course)
-    NTot = len(Result.objects.filter(finished_course=True))
+    NTot = len(Result.objects.filter(choice__variation__course=course,finished_course=True))
+    print(NTot)
     if NTot == 0:
         variation = random.choice(all_variations)
         return Choice.objects.create(variation=variation,student=student, startingTime=date.today())
@@ -88,7 +89,8 @@ def PlotResults(predictor,course_id):
                     if r.finished_course:
                         average += r.score
                         N+=1
-            average /= N
+            if N != 0:
+                average /= N
             datapoints.append(average)
             data_pack.append(datapoints)
     data_out = { 'possible_strpred':possible_strpred, 'data_pack':data_pack }
