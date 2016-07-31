@@ -83,8 +83,9 @@ def PlotResults(predictor,course_id):
             N=0 # TODO raises bug when not all choices and predictors were tried
             for r in varlist:
                 if r.choice.student._meta.get_field(predictor)==p:
-                    average += r.score
-                    N+=1
+                    if r.finished_course:
+                        average += r.score
+                        N+=1
             average /= N
             datapoints.append(average)
             data_pack.append(datapoints)
