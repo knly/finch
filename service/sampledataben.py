@@ -3,7 +3,7 @@ from service.engine import *
 import datetime
 import random
 
-c = Course.objects.create(title="What do people laugh about?")
+c = Course.objects.create(title="What do people laugh about?",description="This course ")
 v1 = Variation.objects.create(course=c,description="gravity")
 l1 = Lesson.objects.create(variation=v1,index=1,content="![gravity](https://img.buzzfeed.com/buzzfeed-static/static/2016-04/6/9/enhanced/webdr08/enhanced-11396-1459948994-2.jpg?no-auto)")
 v2 = Variation.objects.create(course=c,description="argon")
