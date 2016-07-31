@@ -1,7 +1,6 @@
 from .models import *
 import random
 import scipy.stats
-from chartit import DataPool,Chart
 from datetime import date
 
 

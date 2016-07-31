@@ -97,6 +97,7 @@ class Result(models.Model):
     The result of a test.
     Always relates to a specific choice of variations of the course material.
     """
+    test = models.ForeignKey(Test)
     choice = models.OneToOneField(Choice)
     score = models.FloatField()
     finished_course = models.BooleanField(default=True)
