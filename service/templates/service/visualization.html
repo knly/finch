@@ -1,15 +1,32 @@
 {% extends "service/base.html" %}
 {% load staticfiles %}
 
-{% block scripts %}
-{% load chartit %}
-{{ chart|load_charts:"canvas" }}
-{% endblock %}
+
 
 {% block content %}
 
+
+
 <h1>Visualization</h1>
-<div id="canvas">
-{{chart}}
-</div>
+{{ data }}
+<canvas id="chart" width=400 height=400></canvas>
+
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+<script type="text/javascript">
+	var ctx = document.getElementById("chart");
+    var chart = new Chart(ctx,{
+    	type: 'line',
+    	data: {
+    		labels: [{% for p in data.possible_predictors %}"{{ p }}",{% endfor %}],
+    		datasets: [{% for dd in data.data_pack %}{
+    			label: "",
+    			data: [{% for d in dd %}{{ d }},{% endfor %}]
+    		},{% endfor %}]
+
+    	}
+    })
+</script>
 {% endblock %}

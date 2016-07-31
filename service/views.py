@@ -92,5 +92,5 @@ def visualization(request, course_id):
     template = loader.get_template('service/visualization.html')
 
     chart = PlotResults('gender',course_id)
-    return HttpResponse(template.render({ 'chart': chart }, request))
+    return HttpResponse(template.render({ 'data':chart }, request))
 

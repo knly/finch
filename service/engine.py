@@ -60,51 +60,29 @@ def PlotResults(predictor,course_id):
     all_variations = crs.variation_set.all()
     relevant_results = Result.objects.filter(choice__variation__course=crs)
 
-    """
     # Deduce possible predictors
-    pred = Student._meta.get_field(predictor)
     possible_predictors=[]
     for r in relevant_results:
+        if possible_predictors == []:
+            possible_predictors.append(r.choice.student._meta.get_field(predictor))
         for p in possible_predictors:
-            if r.student.pred!=p:
-                possible_predictors.append(r.student.pred)
+            if r.choice.student._meta.get_field(predictor)!=p:
+                possible_predictors.append(r.choice.student._meta.get_field(predictor))
 
-    print(possible_predictors)
-
-    datapoints=[]
+    data_pack=[]
     for p in possible_predictors:
-        dummy = Student.objects.create(pred=p)
-        dumtest = Test.objects.create(course=crs)
+        datapoints=[]
         for var in all_variations:
             average = 0
-            dumchoice = Choice.objects.create(student=dummy,variation=var)
-            N = len(relevant_results.filter(choice__student__pred=p)).filter(choice__variation=var)
-            for r in relevant_results.filter(pred=p):
-                average += r.score / N
-            avres = Result.object.create(test=dumtest,choice=dumchoice,score=average)
-            datapoints.append(avres)
-            dummy.delete()
-            dumtest.delete()
-            dumchoice.delete()
-            avres.delete()
+            varlist = relevant_results.filter(choice__variation=var)
+            N=0
+            for r in varlist:
+                if r.choice.student._meta.get_field(predictor)==p:
+                    average += r.score
+                    N+=1
+            average /= N
+            datapoints.append(average)
+            data_pack.append(datapoints)
+    data_out = { 'possible_predictors':possible_predictors, 'data_pack':data_pack }
 
-    idlist = []
-    for res in datapoints:
-        idlist.append(res.id)
-
-    datares = Result.objects.filter(id__in=idlist)
-
-   # data = DataPool(series=[
-    #    {'options': 
-     #       {'source':Result.objects.filter(choice__variation=var).filter(choice__variation__course=crs)},
-      #          'terms': termlist} for var in all_variations])
-    """
-    data = DataPool(series=[{'options':
-        {'source':relevant_results.filter(choice__variation=var)},
-            'terms':['choice__student__'+predictor,'score']} for var in all_variations])
-
-    plot = Chart(datasource=data,series_options=[
-        {'options': {'type':'line'},
-        'terms': {'choice__student__'+predictor: ['score']}}])
-
-    return plot
+    return data_out
