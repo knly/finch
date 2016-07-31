@@ -16,7 +16,7 @@ We believe our project can have a significant impact on online education quality
 
 ## About this Project
 
-We developed the idea and core implementation of this project during the [CERN Webfest 2016](http://webfest.web.cern.ch). The CERN Webfest is an annual hackathon for the summer students at CERN in Geneva, Switzerland to develop science and humanitarian projects over a weekend.
+We developed the idea and implemented the core functionality of this project from scratch during the [CERN Webfest 2016](http://webfest.web.cern.ch). The CERN Webfest is an annual hackathon for the summer students at CERN in Geneva, Switzerland to develop science and humanitarian projects over a weekend.
 
 **Developers:**
 
