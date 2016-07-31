@@ -3,7 +3,24 @@ from service.engine import *
 import datetime
 import random
 
-c = Course.objects.create(title="What do people laugh about?",description="This course ")
+c = Course.objects.create(title="What do people laugh about?",description=`
+    In this course we study, *what* makes people laugh. 
+    In particular, we will learn that people have different types of humor and develop a conceptual idea of how to be funny.
+
+    Part 2 of this course (available soon), will focus on the theoretical side of humor, such as
+    the theories of 
+    ⋅⋅⋅Relief, 
+    ⋅⋅⋅Superiority, 
+    ⋅⋅⋅Incongruity, 
+    ⋅⋅⋅semantic types of humor. 
+    Researchers in this field call themselves **Festivitastist** and we will investigate on the history of their field.
+    We will finish part 2 with the Ontic-Epistemic Theory of Humor, proposed in 2006 by the Festivitastist P. Marteinson. For more information, 
+    see [link](https://en.wikipedia.org/wiki/Theories_of_humor).
+
+    In order to take part 2, it is strongly recommended to take part 1.
+
+    Enjoy the course and have a good laugh! ;)
+    `)
 v1 = Variation.objects.create(course=c,description="gravity")
 l1 = Lesson.objects.create(variation=v1,index=1,content="![gravity](https://img.buzzfeed.com/buzzfeed-static/static/2016-04/6/9/enhanced/webdr08/enhanced-11396-1459948994-2.jpg?no-auto)")
 v2 = Variation.objects.create(course=c,description="argon")
