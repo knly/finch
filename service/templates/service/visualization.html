@@ -8,26 +8,37 @@
 
 
 <h1>Visualization</h1>
-{{ data }}
 <canvas id="chart" width=400 height=400></canvas>
-
+{{ data }}
 {% endblock %}
-
 {% block scripts %}
-{% if data.chart %}
+{% if data %}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
 <script type="text/javascript">
 	var ctx = document.getElementById("chart");
+    var running = 1;
     var chart = new Chart(ctx,{
-    	type: 'line',
+    	type: 'bar',
     	data: {
-    		labels: [{% for p in data.possible_predictors %}"{{ p }}",{% endfor %}],
+    		labels: [{% for p in data.possible_strpred %}"{{ p }}",{% endfor %}],
     		datasets: [{% for dd in data.data_pack %}{
-    			label: "",
+    			backgroundColor: "rgba(" + 100*(running-1) + ",0,0,0.5)",
+                label: "var" + running++,
+                
     			data: [{% for d in dd %}{{ d }},{% endfor %}]
     		},{% endfor %}]
 
-    	}
+    	},
+        options: {
+            title: {display:true, text: "Score vs. Gender", fontSize: 28},
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]                
+            }
+        }
     })
 </script>
 {% endif %}
