@@ -9,7 +9,7 @@ app.CourseElement = Backbone.View.extend({
  				<div class="col-sm-3 varibrowsing">
 			        <ul class="nav nav-pills nav-stacked">
 			        <% for (var variation of variations){ %>
-			          <li class="nav-item"><a href="#div<%=variation.id %>" id="li<%=variation.id %>" class="nav-link" data-toggle="tab"><span contenteditable><%=variation.description %></span><span class="varidelete" id="del<%=variation.id %>">x</span></a></li>
+			          <li class="nav-item"><a href="#div<%=variation.id %>" id="li<%=variation.id %>" class="nav-link" data-toggle="tab"><span contenteditable><%=variation.description %></span><span class="varidelete" id="<%=variation.id %>">x</span></a></li>
 			        <% } %>
 			        <li class="nav-item"><a href="#add"  class="nav-link variadd"><span>+</span></a></li>
 			        </ul>
@@ -38,10 +38,30 @@ app.CourseElement = Backbone.View.extend({
 
 		events: {
 			'click .variadd':'addvari',
+			'click .varidelete':'remvari',
 		},
 
 		addvari: function(event){
-			this.variations.push({id:this.variations.length+1,content:"You created a new variation of a course.",description:"New Variation"});
+			this.variations.push({id:this.variations.length+5,content:"You created a new variation of a course.",description:"New Variation"});
+			this.render();
+		},
+
+		remvari: function(event){
+			var ident = event.target.id;
+			//console.log(ident);
+
+			var index=0;
+
+			for (var variation of this.variations){
+				if(variation.id == ident){
+					if (index > -1){
+						this.variations.splice(index, 1);
+					}
+					break;
+				}
+				index++;
+			}
+
 			this.render();
 		},
 });
