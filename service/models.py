@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from markupfield.fields import MarkupField
+from datetime import date
 
 class Course(models.Model):
     """
@@ -89,7 +90,7 @@ class Choice(models.Model):
     """
     variation = models.ForeignKey(Variation)
     student = models.ForeignKey(Student)
-    startingTime = models.DateField()
+    startingTime = models.DateField(default=date.today())
 
 
 class Result(models.Model):

@@ -10,12 +10,13 @@ def chooseVariations(course, student):
     # Perform chi-square test
     scores=[]
     avg_score=0
-    NTot = len(Result.objects.all())
+    find_unfinished_results(course)
+    NTot = len(Result.objects.filter(finished_course=True))
     if NTot == 0:
         variation = random.choice(all_variations)
         return Choice.objects.create(variation=variation,student=student, startingTime=date.today())
     for i, var in enumerate(all_variations):
-        student_list = Result.objects.filter(choice__variation=var)
+        student_list = Result.objects.filter(choice__variation=var, finished_course=True)
         N = len(list(student_list))
         for s in student_list:
             avg_score += s.score / N
