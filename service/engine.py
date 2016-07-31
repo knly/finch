@@ -14,14 +14,19 @@ def chooseVariations(course, student):
     if NTot == 0:
         variation = random.choice(all_variations)
         return Choice.objects.create(variation=variation,student=student, startingTime=date.today())
-    for i, var in enumerate(all_variations):
+    for var in all_variations:
         student_list = Result.objects.filter(choice__variation=var, finished_course=True)
         N = len(list(student_list))
         for s in student_list:
             avg_score += s.score / N
         scores.append(avg_score)
         avg_score=0
-    pval = scipy.stats.chisquare(scores)[1]
+    if(len(list(student_list)))<10:
+        pval = 0.5
+    else:
+        pval = scipy.stats.chisquare(scores)[1]
+        print("CHI_SQ::::::::::::::::::::::::::::::::::::::::")
+        print(pval)
 
     # determine weights
 
@@ -60,20 +65,15 @@ def PlotResults(predictor,course_id):
     crs = Course.objects.get(pk=course_id)
 
     # TODO verify that this is the only place where we access results
-    print('000000000000000000000000')
     find_unfinished_results(crs)
-    print('11111111111111111111111')
 
     all_variations = crs.variation_set.all()
     relevant_results = Result.objects.filter(choice__variation__course=crs)
-    print(len(relevant_results))
-    print('222222222222222222222222')
     # Deduce possible predictors
     possible_strpred=[]
     for r in relevant_results:
         if len(possible_strpred)==0:
             possible_strpred.append(str(getattr(r.choice.student,predictor)))
-            print(possible_strpred)
         no_append=False
         for p in possible_strpred:
             if str(getattr(r.choice.student,predictor)) == p:
@@ -81,32 +81,25 @@ def PlotResults(predictor,course_id):
 
         if(not no_append):
             possible_strpred.append(str(getattr(r.choice.student,predictor)))
-        print(possible_strpred)
-    print(len(possible_strpred))
-    print('333333333333333333333333333333333')
-    print()
     data_pack=[]
-    varpack=[]
     for p in possible_strpred:
-      #  print("p = " + p.__str__() + ", -------------------------------")
         datapoints=[]
         for var in all_variations:
-            varpack.append(var.description)
-       #     print("var = " + var.__str__() + "- - - - - - - - - - - - - - ")
             average = 0
-            varlist = relevant_results.filter(choice__variation=var)
+            varlist = Result.objects.filter(choice__variation=var)
+            print(varlist)
             N=0 # TODO raises bug when not all choices and predictors were tried
             for r in varlist:
                 if getattr(r.choice.student,predictor) == p:
                     if r.finished_course:
                         average += r.score
+                        print(r.score)
                         N+=1
             if N != 0:
                 average /= N
             datapoints.append(average)
         data_pack.append(datapoints)
-    data_out = { 'possible_strpred':possible_strpred, 'data_pack':data_pack, 'vars': varpack }
-    print('44444444444444444444444444444444444')
+    data_out = { 'possible_strpred':possible_strpred, 'data_pack':data_pack }
     return data_out
 
 

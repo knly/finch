@@ -90,6 +90,5 @@ def save_course(request, course_id):
 
 def visualization(request, course_id):
     template = loader.get_template('service/visualization.html')
-    print('55555555555555555555555555555')
     chart = PlotResults('gender',course_id)
     return HttpResponse(template.render({ 'data':chart }, request))
