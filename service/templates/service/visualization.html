@@ -10,21 +10,21 @@
 <h1>Visualization</h1>
 Thank you for taking this course! Here's how the average results vary with your specified predictor:
 <canvas id="chart" width=400 height=200></canvas>
-{{ data }}
 {% endblock %}
 {% block scripts %}
 {% if data %}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
 <script type="text/javascript">
 	var ctx = document.getElementById("chart");
-    var running = 1;
+    var running = 0;
+    var lbls = [{% for i in data.varpack%} "{{ i }}",{% endfor %}];
     var chart = new Chart(ctx,{
     	type: 'bar',
     	data: {
     		labels: [{% for p in data.possible_strpred %}"{{ p }}",{% endfor %}],
     		datasets: [{% for dd in data.data_pack %}{
-    			backgroundColor: "rgba(" + 100*(running-1) + ",0,0,0.5)",
-                label: "var" + running++,
+    			backgroundColor: "rgba(" + 100*running + ",0,0,0.5)",
+                label: lbls[running++],
                 
     			data: [{% for d in dd %}{{ d }},{% endfor %}]
     		},{% endfor %}]

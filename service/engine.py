@@ -82,8 +82,10 @@ def PlotResults(predictor,course_id):
         if(not no_append):
             possible_strpred.append(str(getattr(r.choice.student,predictor)))
     data_pack=[]
+    varpack=[]
     for var in all_variations:
         datapoints=[]
+        varpack.append(var.description)
         for p in possible_strpred:
             average = 0
             varlist = Result.objects.filter(choice__variation=var)
@@ -99,7 +101,7 @@ def PlotResults(predictor,course_id):
                 average /= N
             datapoints.append(average)
         data_pack.append(datapoints)
-    data_out = { 'possible_strpred':possible_strpred, 'data_pack':data_pack }
+    data_out = { 'possible_strpred':possible_strpred, 'data_pack':data_pack, 'varpack': varpack }
     return data_out
 
 
