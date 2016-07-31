@@ -4797,7 +4797,7 @@ p {
   color: black;
   padding-top: 2rem;
   padding-bottom: 2rem; }
-  #site-content img {
+  #site-content .lesson-content img {
     margin: 0 auto;
     display: block;
     max-width: 50%; }
