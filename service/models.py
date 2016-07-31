@@ -90,7 +90,7 @@ class Choice(models.Model):
     """
     variation = models.ForeignKey(Variation)
     student = models.ForeignKey(Student)
-    startingTime = models.DateField(default=date.today())
+    startingTime = models.DateField(auto_now_add=True)
 
 
 class Result(models.Model):
