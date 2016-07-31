@@ -74,7 +74,7 @@ class Student(models.Model):
     Information about the demographics and other predictors.
     """
     name = models.CharField(max_length=200)
-    age = models.IntegerField(default=0)
+    birthday = models.DateField()
     gender = models.CharField(max_length=100, choices=[ ("male", "Male"), ("female", "Female") ])  # "m" or "f" (or do we need to be politically correct?)
     originLanguageCode = models.CharField(max_length=5, default="en")
 
