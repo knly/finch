@@ -8,7 +8,8 @@
 
 
 <h1>Visualization</h1>
-<canvas id="chart" width=400 height=400></canvas>
+Thank you for taking this course! Here's how the average results vary with your specified predictor:
+<canvas id="chart" width=400 height=200></canvas>
 {{ data }}
 {% endblock %}
 {% block scripts %}
@@ -30,7 +31,7 @@
 
     	},
         options: {
-            title: {display:true, text: "Score vs. Gender", fontSize: 28},
+            title: {display:true, text: "Score vs. Predictor", fontSize: 28},
             scales: {
                 yAxes: [{
                     ticks: {
