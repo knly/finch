@@ -67,7 +67,7 @@ def calculate_score(course, users_answer):
     for i in range(0, len(correct_answer)):
         if (i < len(users_answer) and users_answer[i] == correct_answer[i]):
             score += 1 / len(correct_answer)
-    return score
+    return score * 100
 
 
 
