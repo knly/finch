@@ -2,16 +2,26 @@ from service.models import *
 from service.engine import *
 import datetime
 import random
+import markdown
 
 c = Course.objects.create(title="Schrodinger Equation")
-t = Test.objects.create(course=c,content="Isn't Schrodinger Equation great?", correct_answer="yes")
+content1 = markdown.markdown("Quantum Mechanics 5a - Schrödinger Equation 1 \n\n[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/aU_bd7fku90/0.jpg)](http://www.youtube.com/watch?v=aU_bd7fku90)", safe_mode=True)
+content2 = markdown.markdown("Schrodinger Equation - A simple derivation \n\n [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/IsX5iUKNT2k/0.jpg)](http://www.youtube.com/watch?v=IsX5iUKNT2k)", safe_mode=True)
+test_content = markdown.markdown("Why don't we experience the wave nature of matter on our everyday lives? \n\n \n\n a) The particles are connected in a complex system which suppresses the effect. \n\n b) It is not yet clear to science. \n\n c) The wavelength is to small for our scales.", safe_mode=True)
+t = Test.objects.create(course=c,content="Isn't Schrodinger Equation great?", correct_answer="c")
 v1 = Variation.objects.create(course=c,description="Derivation")
+l1 = Lesson.objects.create(variation=v1, index=0, content=content1)
 v2 = Variation.objects.create(course=c,description="Conceptual")
+l2 = Lesson.objects.create(variation=v2, index=0, content=content2)
 variations = [v1, v2]
 genders = ["male", "female"]
 language_codes = ["en", "iw", "de"]
+names = ["Lagrange", "Dirac", "Tesla", "Bohr", "Feynman",
+         "Planck", "Hopper", "Born", "Heisenberg", "Einstein",
+         "Zwicky", "Curie", "Euler", "Hamilton", "Cantor",
+         "Lie", "Newton", "Kepler", "Lorentz", "Halmholz"]
 for i in range(20):
-    name = "student" + i.__str__()
+    name = "SE_student" + i.__str__()
     birthday = "199" + (i%10).__str__() + "-01-01"
     gender = genders[i%2]
     language_code = language_codes[i%3]
@@ -27,13 +37,3 @@ for i in range(20):
                           choice=ch,
                           score=10+10*random.random(),
                           finished_course=finished_course)
-"""
-for i in range(100):
-    tmp = chooseVariations(c,s3)
-    if tmp.variation == v1:
-        p1+=1
-    if tmp.variation == v2:
-        p2+=1
-print(p1/(p1+p2))
-print(p2/(p1+p2))
-"""
