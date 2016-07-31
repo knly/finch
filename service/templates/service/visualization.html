@@ -8,7 +8,36 @@
 
 
 <h1>Visualization</h1>
+<p>
 Thank you for taking this course! Here's how the average results vary with your specified predictor:
+</p>
+<p>
+<b>Number of users assigned to each variation:</b>
+</p>
+<p>
+{% for j in data.varpack %}
+{% for i in data.varnum %}
+{% if forloop.counter == forloop.parentloop.counter %}
+<p>
+{{ j }}:    {{ i }}
+</p>
+{% endif %}
+{%endfor%}
+{%endfor%}
+
+<b>Probability of assignment to each variation:</b>
+</p>
+<p>
+{% for j in data.varpack %}
+{% for i in data.varprob %}
+{% if forloop.counter == forloop.parentloop.counter %}
+<p>
+{{ j }}:    {{ i }}
+</p>
+{% endif %}
+{%endfor%}
+{%endfor%}
+</p>
 <canvas id="chart" width=400 height=200></canvas>
 {% endblock %}
 {% block scripts %}
@@ -18,6 +47,7 @@ Thank you for taking this course! Here's how the average results vary with your 
 	var ctx = document.getElementById("chart");
     var running = 0;
     var lbls = [{% for i in data.varpack%} "{{ i }}",{% endfor %}];
+    var nums = [{% for j in varnum %} "{{ j }}", {% endfor %}]; 
     var chart = new Chart(ctx,{
     	type: 'bar',
     	data: {
