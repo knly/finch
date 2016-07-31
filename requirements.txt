@@ -1,6 +1,5 @@
 django
 django-markupfield
-django-chartit
 Markdown
 scipy
 pytz

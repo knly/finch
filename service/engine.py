@@ -1,7 +1,6 @@
 from .models import *
 import random
 import scipy.stats
-from chartit import DataPool,Chart
 from datetime import date
 
 
@@ -68,12 +67,14 @@ def PlotResults(predictor,course_id):
 
     # Deduce possible predictors
     possible_predictors=[]
+    possible_strpred=[]
     for r in relevant_results:
         if possible_predictors == []:
             possible_predictors.append(r.choice.student._meta.get_field(predictor))
         for p in possible_predictors:
             if r.choice.student._meta.get_field(predictor)!=p:
                 possible_predictors.append(r.choice.student._meta.get_field(predictor))
+                possible_strpred.append(r.choice.student._meta.get_field(predictor).verbose_name)
 
     data_pack=[]
     for p in possible_predictors:
@@ -90,7 +91,7 @@ def PlotResults(predictor,course_id):
             average /= N
             datapoints.append(average)
             data_pack.append(datapoints)
-    data_out = { 'possible_predictors':possible_predictors, 'data_pack':data_pack }
+    data_out = { 'possible_strpred':possible_strpred, 'data_pack':data_pack }
 
     return data_out
 

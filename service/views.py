@@ -42,7 +42,7 @@ def take_course(request, course_id, student_id):
     except Choice.DoesNotExist:
         choice = chooseVariations(course=course, student=student)
     if request.method == 'POST':
-        result = Result.objects.create(choice=choice,
+        result = Result.objects.create(test=course.test, choice=choice,
                                        score=calculate_score(
                                            course, request.POST["users_answer"]))
         return HttpResponseRedirect(reverse('visualization', args=(course_id,)))
@@ -93,4 +93,3 @@ def visualization(request, course_id):
 
     chart = PlotResults('gender',course_id)
     return HttpResponse(template.render({ 'data':chart }, request))
-
