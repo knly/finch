@@ -2,6 +2,8 @@ from .models import *
 import random
 import scipy.stats
 from chartit import DataPool,Chart
+from datetime import date
+
 
 def chooseVariations(course, student):
     all_variations = course.variation_set.all()
@@ -11,7 +13,7 @@ def chooseVariations(course, student):
     NTot = len(Result.objects.all())
     if NTot == 0:
         variation = random.choice(all_variations)
-        return Choice.objects.create(variation=variation,student=student)
+        return Choice.objects.create(variation=variation,student=student, startingTime=date.today())
     for i, var in enumerate(all_variations):
         student_list = Result.objects.filter(choice__variation=var)
         N = len(list(student_list))
@@ -50,12 +52,15 @@ def chooseVariations(course, student):
 
     variation = weighted_choice(probs)
 
-    return Choice.objects.create(variation=variation, student=student)
+    return Choice.objects.create(variation=variation, student=student, startingTime=date.today())
 
 def PlotResults(predictor,course_id):
 
     pred = Student._meta.get_field(predictor)
     crs = Course.objects.get(pk=course_id)
+
+    # TODO verify that this is the only place where we access results
+    find_unfinished_results(crs)
 
     all_variations = crs.variation_set.all()
     relevant_results = Result.objects.filter(choice__variation__course=crs)
@@ -75,14 +80,26 @@ def PlotResults(predictor,course_id):
         for var in all_variations:
             average = 0
             varlist = relevant_results.filter(choice__variation=var)
-            N=0
+            N=0 # TODO raises bug when not all choices and predictors were tried
             for r in varlist:
                 if r.choice.student._meta.get_field(predictor)==p:
-                    average += r.score
-                    N+=1
+                    if r.finished_course:
+                        average += r.score
+                        N+=1
             average /= N
             datapoints.append(average)
             data_pack.append(datapoints)
     data_out = { 'possible_predictors':possible_predictors, 'data_pack':data_pack }
 
     return data_out
+
+
+MAX_SESSION_TIME_DAYS = 7
+
+
+def find_unfinished_results(course):
+    for variation in course.variation_set.all():
+        for choice in variation.choice_set.all():
+            if not hasattr(choice, 'result'):
+                if ((date.today() - choice.startingTime).days >= MAX_SESSION_TIME_DAYS):
+                    result = Result.objects.create(choice=choice, score=-1, finished_course=False)

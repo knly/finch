@@ -42,7 +42,7 @@ def take_course(request, course_id, student_id):
     except Choice.DoesNotExist:
         choice = chooseVariations(course=course, student=student)
     if request.method == 'POST':
-        result = Result.objects.create(test=course.test, choice=choice,
+        result = Result.objects.create(choice=choice,
                                        score=calculate_score(
                                            course, request.POST["users_answer"]))
         return HttpResponseRedirect(reverse('visualization', args=(course_id,)))
