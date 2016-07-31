@@ -70,11 +70,11 @@ def PlotResults(predictor,course_id):
     possible_strpred=[]
     for r in relevant_results:
         if possible_predictors == []:
-            possible_predictors.append(r.choice.student._meta.get_field(predictor))
+            possible_predictors.append(getattr(r.choice.student,predictor))
         for p in possible_predictors:
-            if r.choice.student._meta.get_field(predictor)!=p:
-                possible_predictors.append(r.choice.student._meta.get_field(predictor))
-                possible_strpred.append(r.choice.student._meta.get_field(predictor).verbose_name)
+            if getattr(r.choice.student,predictor)!=p:
+                possible_predictors.append(getattr(r.choice.student,predictor))
+                possible_strpred.append(getattr(r.choice.student,predictor))
 
     data_pack=[]
     for p in possible_predictors:
@@ -84,7 +84,7 @@ def PlotResults(predictor,course_id):
             varlist = relevant_results.filter(choice__variation=var)
             N=0 # TODO raises bug when not all choices and predictors were tried
             for r in varlist:
-                if r.choice.student._meta.get_field(predictor)==p:
+                if getattr(r.choice.student,predictor)==p:
                     if r.finished_course:
                         average += r.score
                         N+=1
