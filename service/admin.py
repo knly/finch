@@ -27,4 +27,5 @@ admin.site.register(Variation, VariationAdmin)
 
 admin.site.register(Test)
 admin.site.register(Student)
+admin.site.register(Choice)
 admin.site.register(Result)

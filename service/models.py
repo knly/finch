@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from markupfield.fields import MarkupField
 
-
 class Course(models.Model):
     """
     The course a teacher creates to teach a certain subject.
@@ -82,6 +81,7 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
+
 class Choice(models.Model):
     """
     One specific choice of a course's variations, determined when a student enrolls in a course.
@@ -89,6 +89,7 @@ class Choice(models.Model):
     """
     variation = models.ForeignKey(Variation)
     student = models.ForeignKey(Student)
+    startingTime = models.DateField()
 
 
 class Result(models.Model):
@@ -96,6 +97,6 @@ class Result(models.Model):
     The result of a test.
     Always relates to a specific choice of variations of the course material.
     """
-    test = models.ForeignKey(Test)
-    choice = models.ForeignKey(Choice)
+    choice = models.OneToOneField(Choice)
     score = models.FloatField()
+    finished_course = models.BooleanField(default=True)
