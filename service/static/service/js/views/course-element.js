@@ -15,9 +15,9 @@ app.CourseElement = Backbone.View.extend({
 			        </ul>
 			    </div>
 			    <div class="col-sm-9 varicontentholder">
-			        <div class="tab-content varicontent">
+			        <div class="tab-content varich">
 			        	 <% for (var variation of variations){ %>
-				         <div class="tab-pane editme" id="div<%=variation.id %>"><%=variation.content %></div>
+				         <div class="tab-pane editme varicontent" id="div<%=variation.id %>"><%=variation.content %></div>
 				         <% } %>
 			    	</div>
 			   	</div>
@@ -33,7 +33,6 @@ app.CourseElement = Backbone.View.extend({
 
 		render: function(){
 			this.$el.html(this.template({ variations: this.variations }));
-
 			return this;
 		},
 

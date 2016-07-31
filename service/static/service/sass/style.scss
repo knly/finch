@@ -190,15 +190,23 @@ $borderwidth: 1px;
 
 .varicontentholder{
 	padding-left:0!important;
-	min-height: 300px;
+	height: 300px;
 	border-left: $bordercolor solid $borderwidth;
 	border-top-right-radius: $border-radius;
 	//border-bottom-left-radius: $border-radius;
 	border-bottom-right-radius: $border-radius;
 }
 
+.varich{
+	height: 100%;
+}
+
 .varicontent{
-	margin: 10px 15px;
+	padding: 10px 15px;
+	min-height: 100%;
+	width: 102%;
+	border-radius: $border-radius;
+	background-color: $white;
 }
 
 .variadd{
@@ -213,8 +221,26 @@ $borderwidth: 1px;
 	background-color: adjust-color($secondary, $saturation: -10%)!important;
 }
 
+.coursetitlepre{
+	text-decoration: underline;
+}
+
 .coursetitle{
 	display: inline-block;
 	width: auto!important;
 	margin-left:23px;
+	font-size:1em;
+}
+
+.courseeditsubmit{
+	text-align:center;
+	margin-top: 10px;
+}
+
+.submitbutton{
+	margin: 10px;
+}
+
+#pushme{
+	margin-top: 20px;
 }
