@@ -1,5 +1,4 @@
-django
-django-markupfield
-Markdown
-scipy
-pytz
+Django~=1.9.8
+django-markupfield~=1.4.0
+Markdown~=2.6.6
+scipy~=0.18.0
